@@ -6,7 +6,8 @@ pipeline {
 	stages{
 		stage('Checkout Code') {
 			steps {
-				git 'https://github.com/rithuraj6/ci-pipleline-demo.git'
+				git branch: 'main'
+					url: 'https://github.com/rithuraj6/ci-pipleline-demo.git'
 			}
 		}
 		
