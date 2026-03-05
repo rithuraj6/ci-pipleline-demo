@@ -24,13 +24,17 @@ pipeline {
                 sh 'mvn test'
             }
         }
-	stage('SonarQube Analysis') {
-		steps{
-			withSonarQubeEnv('sonarqube'){
-				sh 'mvn sonar:sonar'
-			}
-		}
-	}
 
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh '''
+                    mvn sonar:sonar \
+                    -Dsonar.projectKey=ci-demo-2 \
+                    -Dsonar.projectName=ci-demo-2
+                    '''
+                }
+            }
+        }
     }
 }
