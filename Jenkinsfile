@@ -1,33 +1,29 @@
 pipeline {
-	agent any
-	tools {
-		maven 'Maven'
-	}
-	stages{
-		stage('Checkout Code') {
-			steps {
-				git branch: 'main'
-					url: 'https://github.com/rithuraj6/ci-pipleline-demo.git'
-			}
-		}
-		
+    agent any
 
-		stage('Build') {
-			steps {
-				sh 'mvn clean compile'
-			}
-		}
-		
-		stage('Unit Test') {
-			steps {
-				sh 'mvn test'
-			}
-		}
+    tools {
+        maven 'Maven'
+    }
 
-		stage('Sonar Analysis') {
-			steps {
-				sh 'mvn sonar:sonar'
-			}
-		}
-    	}
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/rithuraj6/ci-pipleline-demo.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+    }
 }
